@@ -5,3 +5,6 @@ xgboost
 imbalanced-learn
 matplotlib
 seaborn
+shap
+optuna
+joblib

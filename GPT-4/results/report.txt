@@ -1,0 +1,58 @@
+1. Confusion Matrix анализ
+Матрица:
+True \ Pred	Attack	Benign
+Attack	55090	3
+Benign	7	13678
+Ошибки:
+False Negative (пропущенные атаки): 3
+False Positive (ложные тревоги): 7
+Всего ошибок: 10 из 68 778
+
+Метрики:
+Accuracy ≈ 99.985%
+Recall (Attack detection rate) ≈ 99.994%
+False Alarm Rate ≈ 0.05%
+
+Вывод:
+Модель практически идеально разделяет классы.
+
+2. Optuna tuning
+Лучшие параметры:
+n_estimators = 297
+max_depth = 12
+learning_rate = 0.197
+subsample ≈ 0.89
+colsample ≈ 0.85
+
+Cross-validation F1:
+0.99997
+
+3. SHAP анализ (интерпретация)
+Самые важные признаки:
+Pkt Len Max — самый сильный фактор
+Init Bwd Win Byts
+Bwd Header Len
+SYN Flag Cnt
+Pkt Size Avg
+Dst Port
+ACK Flag Cnt
+
+Что это означает?
+Модель опирается на:
+размер пакетов
+TCP-флаги (SYN, ACK, FIN)
+статистику длины заголовков
+порт назначения
+Это логично для:
+SYN flood
+TCP-based атак
+сканирования портов
+То есть модель учится на реальных сетевых паттернах.
+Это очень хороший признак.
+
+Для сравнения:
+Уровень	Accuracy
+Средняя статья	92–97%
+Хороший IDS	97–99%
+Очень сильная работа	99–99.7%
+У тебя	99.985%
