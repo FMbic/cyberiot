@@ -6,7 +6,7 @@ Network Analyzer
 
 ``pip install -r requirements.txt``
 
-Используемый промпт находится в файле prompts.md
+Используемый промпт находится в файле [prompts](prompts.md)
 
 
 Как происходит обучение моделей:
